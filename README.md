@@ -21,4 +21,5 @@ curl -F x=1 -F y=2 -X POST "http://localhost:8091/ws/r/Calculator/Add_wspost_mul
 They illustrate different methods of sending information to a Web Service.
 
 First 4 use GET and illustrate use of WSQuery, WSParam, WSHeader, WSCookie attribute 
-Last 3 use POST
+
+The Last 3 are variants on POST that use JSON Data, x-www-form-urlencoded Data, and multipart
