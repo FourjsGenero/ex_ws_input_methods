@@ -160,7 +160,7 @@ PUBLIC FUNCTION add_wscookie(p_x INTEGER, p_y INTEGER) RETURNS(INTEGER, INTEGER)
                     RETURN C_SUCCESS, resp_body
                 END IF
                 LET wsError.code = resp.getStatusCode()
-                LET wsError.code = "Unexpected Content-Type"
+                LET wsError.description = "Unexpected Content-Type"
                 RETURN -1, resp_body
 
             OTHERWISE
@@ -266,7 +266,7 @@ PUBLIC FUNCTION add_wsheader(p_x INTEGER, p_y INTEGER) RETURNS(INTEGER, INTEGER)
                     RETURN C_SUCCESS, resp_body
                 END IF
                 LET wsError.code = resp.getStatusCode()
-                LET wsError.code = "Unexpected Content-Type"
+                LET wsError.description = "Unexpected Content-Type"
                 RETURN -1, resp_body
 
             OTHERWISE
@@ -368,7 +368,7 @@ PUBLIC FUNCTION add_wsparam(p_x INTEGER, p_y INTEGER) RETURNS(INTEGER, INTEGER)
                     RETURN C_SUCCESS, resp_body
                 END IF
                 LET wsError.code = resp.getStatusCode()
-                LET wsError.code = "Unexpected Content-Type"
+                LET wsError.description = "Unexpected Content-Type"
                 RETURN -1, resp_body
 
             OTHERWISE
@@ -472,7 +472,7 @@ PUBLIC FUNCTION add_wspost(p_body postDataType) RETURNS(INTEGER, INTEGER)
                     RETURN C_SUCCESS, resp_body
                 END IF
                 LET wsError.code = resp.getStatusCode()
-                LET wsError.code = "Unexpected Content-Type"
+                LET wsError.description = "Unexpected Content-Type"
                 RETURN -1, resp_body
 
             OTHERWISE
@@ -588,7 +588,7 @@ PUBLIC FUNCTION add_wspost_multipart(
                     RETURN C_SUCCESS, resp_body
                 END IF
                 LET wsError.code = resp.getStatusCode()
-                LET wsError.code = "Unexpected Content-Type"
+                LET wsError.description = "Unexpected Content-Type"
                 RETURN -1, resp_body
 
             OTHERWISE
@@ -662,7 +662,12 @@ PUBLIC FUNCTION add_wspost_wsmedia(
         CALL req.setHeader("Accept", "text/plain")
         # Perform FormEncoded request
         CALL fullpath.clear()
-        CALL req.DoFormEncodedRequest(fullpath.ToString(), TRUE)
+        CALL fullpath.append("x=")
+        CALL fullpath.append(p_body.x)
+        CALL fullpath.append("&")
+        CALL fullpath.append("y=")
+        CALL fullpath.append(p_body.y)
+        CALL req.doFormEncodedRequest(fullpath.toString(), TRUE)
 
         # Retrieve response
         LET resp = req.getResponse()
@@ -692,7 +697,7 @@ PUBLIC FUNCTION add_wspost_wsmedia(
                     RETURN C_SUCCESS, resp_body
                 END IF
                 LET wsError.code = resp.getStatusCode()
-                LET wsError.code = "Unexpected Content-Type"
+                LET wsError.description = "Unexpected Content-Type"
                 RETURN -1, resp_body
 
             OTHERWISE
@@ -812,7 +817,7 @@ PUBLIC FUNCTION add_wsquery(p_x INTEGER, p_y INTEGER) RETURNS(INTEGER, INTEGER)
                     RETURN C_SUCCESS, resp_body
                 END IF
                 LET wsError.code = resp.getStatusCode()
-                LET wsError.code = "Unexpected Content-Type"
+                LET wsError.description = "Unexpected Content-Type"
                 RETURN -1, resp_body
 
             OTHERWISE
