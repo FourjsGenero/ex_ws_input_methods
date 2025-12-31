@@ -89,7 +89,7 @@
     </Group>
     <Group id="-1085265185" label="zzz">
       <Library binaryName="zzz" id="1373044970" label="zzz">
-        <File filePath="server/.gitignore"/>
+        <File filePath=".gitignore"/>
       </Library>
     </Group>
   </Group>
